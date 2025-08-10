@@ -5,15 +5,13 @@ from dotenv import load_dotenv
 import os
 
 def get_all_daily_steps(garmin):
-    """
-    Get last x days of daily step count data from Garmin Connect.
-    """
     startdate = date.today() - timedelta(days=1)
-    daterange = [startdate + timedelta(days=x) 
-                 for x in range((date.today() - startdate).days)] # excl. today
+    daterange = [startdate + timedelta(days=x) for x in range((date.today() - startdate).days)] # excl. today
     daily_steps = []
     for d in daterange:
-        daily_steps += garmin.get_daily_steps(d.isoformat(), d.isoformat())
+        steps = garmin.get_daily_steps(d.isoformat(), d.isoformat())
+        print(d, steps)
+        daily_steps += steps
     return daily_steps
 
 def daily_steps_exist(client, database_id, activity_date):
