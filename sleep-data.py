@@ -13,8 +13,9 @@ load_dotenv()
 CONFIG = dotenv_values()
 
 def get_sleep_data(garmin):
-    today = datetime.today().date()
-    return garmin.get_sleep_data(today.isoformat())
+    # Demande la date d'hier en timezone locale
+    yesterday = datetime.now(local_tz).date() - timedelta(days=1)
+    return garmin.get_sleep_data(yesterday.isoformat())
 
 def format_duration(seconds):
     minutes = (seconds or 0) // 60
