@@ -66,7 +66,7 @@ def update_daily_steps(client, existing_steps, new_steps):
     }
         
     client.pages.update(**update)
-print(steps)  # Affiche le contenu reçu depuis Garmin
+
 def create_daily_steps(client, database_id, steps):
     """
     Create a new daily steps entry in the Notion database.
